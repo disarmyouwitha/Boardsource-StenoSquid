@@ -64,3 +64,23 @@ These checks can revise the provisional pitch, connector side, header height and
 [Outline](artwork/outline.svg), [gold-eye concept](artwork/gold-eyes.svg), and [quiet-line concept](artwork/quiet.svg) are early treatments. The native board uses white outline silkscreen. Gold eyes are a concept image. Independently controlled RGB needs another control path or explicit bus-switching hardware and remains a later design study.
 
 Draft 0 preserves the initial electrical-only proposal. Draft A is routed and checked, with physical and electrical host validation pending. Manufacturing outputs and assembly orders follow that review. Source credits and the KiCad library exception are in [ATTRIBUTION.md](ATTRIBUTION.md) and [LICENSES](LICENSES). A redistribution license for the original design has yet to be selected.
+
+## Review notes for the next draft (Claude, 2026-11-11)
+
+These come from reading `draft-1/steno-squid.kicad_pcb` and the `boardsource-wireless-corne` firmware branch against Boardsource's published pinout. KiCad was not run and no hardware was involved.
+
+**Confirmed**
+
+- All eight header contacts reach the correct W25Q128 pads, and the header order matches Boardsource's expansion table.
+- The firmware's `qspi.dtsi` uses the same six GPIOs and P0.31 for the rail. None of them clash with the key matrix or the battery measurement pin (P0.04).
+- The header spans 17.78 mm at 2.54 mm pitch. C1 sits about 2.5 mm from the flash supply pad.
+
+**To change or decide**
+
+1. **Label VCC and GND on both faces, and number the contacts on the back too.** Today the only labels are the numbers 1–8 on the front. If the module is fitted reversed, the host supply lands on IO3 and ground on CLK. Labels on both faces allow a multimeter check before soldering.
+2. **Orientation is undecided and blocks fabrication.** The header is on one edge. Which end the host's pin 1 is at decides whether the module body hangs toward the keyboard or away from it for a given face. Decide after measuring the delivered Boardsource board, its battery and the available room.
+3. **Component height if the flash faces the host board.** The SOIC-8 (208 mil) package is up to 2.16 mm tall. A standard 2.54 mm pin-header spacer leaves just enough room. A gap of about 1.2 mm does not fit this package; that would need the WSON-8 6 × 5 mm version of the same chip (about 0.8 mm tall), which is practical only with machine assembly.
+4. **Add a bleed resistor footprint from VCC_SW to GND, unpopulated at first.** After the rail is switched off, the flash only resets properly once its supply has fallen below 0.8 V. How quickly it falls depends on parts on the Boardsource side that are not documented. A resistor makes the fall predictable. Start with 47–100 kΩ if measurement shows the rail lingering; 100 kΩ costs about 33 µA while the flash is on. This matters more with the firmware's optional idle power-down, which can switch the rail off and back on within moments.
+5. **Flash part and firmware.** The firmware accepts only the chip ID `EF 40 18` (W25Q128JV-IQ). The W25Q128JV-IM reports `EF 70 18` and would be rejected until the firmware check is widened. Other brands set quad mode differently and need more than an ID change.
+6. **No addressable LED on this revision.** All six signal contacts are used by the flash, so a WS2812 has no data line. A plain indicator LED on the switched rail is possible but draws current whenever the flash is on.
+
