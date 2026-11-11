@@ -1,0 +1,54 @@
+{
+  "revision": "A provisional",
+  "review_date": "2026-11-11",
+  "ERC_violations": 0,
+  "DRC_violations": 0,
+  "unconnected_items": 0,
+  "schematic_parity_issues": 0,
+  "all_eight_contacts_verified_against_schematic_and_PCB": true,
+  "configured_ignored_DRC_categories": [
+    {
+      "description": "Footprint has no courtyard defined",
+      "key": "missing_courtyard"
+    },
+    {
+      "description": "Track endpoint not centered on via",
+      "key": "track_not_centered_on_via"
+    },
+    {
+      "description": "Tuning profile track geometries",
+      "key": "tuning_profile_track_geometries"
+    },
+    {
+      "description": "Footprint doesn't match symbol's footprint filters",
+      "key": "footprint_filters_mismatch"
+    },
+    {
+      "description": "Footprint component type doesn't match footprint pads",
+      "key": "footprint_type_mismatch"
+    }
+  ],
+  "copper_track_lengths_mm": {
+    "/CS_N": 8.911,
+    "/IO0": 14.829,
+    "/CLK": 12.495,
+    "/IO3": 11.098,
+    "/VCC_SW": 35.93,
+    "/GND": 2.841,
+    "/IO1": 13.295,
+    "/IO2": 16.289
+  },
+  "via_counts": {
+    "/VCC_SW": 5,
+    "/GND": 3,
+    "/IO1": 1,
+    "/IO2": 1
+  },
+  "host_pitch_verified": false,
+  "host_fit_verified": false,
+  "host_power_qualified": false,
+  "hashes": {
+    "steno-squid.kicad_pcb": "555c96aa24decbcd28e243ce107ff2a19b62c93eccba167e541568b24878390e",
+    "steno-squid.kicad_sch": "3562375c69d2344738364ee5daab9aa2bf3672f7b1b4a44d424cf87e016ae1b5"
+  }
+}
