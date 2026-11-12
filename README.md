@@ -65,7 +65,14 @@ The nice!view drawing confirms its 2.54 mm header pitch, and Boardsource documen
 
 ## Review record and earlier drafts
 
-[Applied and pending review items](docs/review-status.md) · [Electrical/assembly review](docs/design-review.md) · [Original Claude notes](docs/claude-review-2026-11-11.md)
+[Applied and pending review items](docs/review-status.md) · [Electrical/assembly review](docs/design-review.md) · [Original Claude notes](docs/claude-review-2026-11-11.md) · [Claude review of Draft B](docs/claude-review-draft-b-2026-11-11.md)
+
+Open items from the Draft B review, to settle before ordering:
+
+- Add ground vias beside U1 and C1. The two ground pours currently meet only at header contact 6.
+- Widen VCC_SW from 0.2 mm to 0.4 mm or more and route it more directly. It is about 46 mm long.
+- Update the closing paragraph of `docs/review-status.md`: firmware `main` now builds with ZMK Studio on.
+- Host mating face and the P0.31 rail measurements are still pending.
 
 Draft A under draft-1 preserves the SOIC version and its original mapping. Draft 0 is the initial electrical proposal. Draft B is the active WSON design. The native board currently has the squid on the back, pending final orientation. Artwork studies are in [artwork](artwork). Independently controlled RGB needs another control path and remains future work.
 
