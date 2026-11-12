@@ -12,7 +12,8 @@ A QSPI flash daughterboard for the **left expansion header of the Boardsource Wi
 - Locked pin map with clock on P0.19, IO1 on P0.23 and IO3 on P0.12.
 - 22 × 17 mm outline, provisional 1.0 mm thickness, inferred 2.54 mm eight-contact header pitch.
 - 100 nF C1 and 10 kΩ CS pull-up. Optional 1 µF C2 and 100 kΩ bleed resistor R2 are DNP.
-- Grounded exposed pad with four segmented paste windows. The pad area has a two-layer track/via keepout and ground pours.
+- Grounded exposed pad with four paste windows and a track/via keepout. Three ground stitching vias join the pours beside U1 and C1.
+- 0.40 mm switched-power traces. The front-side path runs from header contact 5 through C1 to U1 pad 8, with 39.48 mm of copper across the full power network.
 - VCC, GND and contacts 1–8 are labeled on both faces, with a back-side pin-1 marker.
 - Native KiCad ERC, DRC, schematic parity and unconnected checks all pass. Every DRC category is enabled. [Validation](draft-2/validation.json)
 
@@ -39,11 +40,9 @@ Wire the Adafruit proof of concept with eight jumpers according to this table. T
 
 ## Firmware and local build evidence
 
-The pin-map changes are on [steno-squid/locked-pin-map](https://github.com/disarmyouwitha/zmk-javelin-steno/tree/steno-squid/locked-pin-map). All four local builds succeeded using Zephyr SDK 0.16.9 and the pinned ZMK/Javelin workspace. The receipt records the source commit, dependencies, compiler and each UF2's SHA-256. [Build receipt](https://github.com/disarmyouwitha/zmk-javelin-steno/blob/steno-squid/locked-pin-map/config/boardsource-wireless-corne/locked-pin-map-build.json)
+Firmware `main` builds its nice!nano left target with ZMK Studio enabled. The Boardsource firmware branch also passes CI for the Studio-enabled left, logging left, right, and both flash probes. Its active and sleep QSPI assignments match Draft B. [Main CI run](https://github.com/disarmyouwitha/zmk-javelin-steno/actions/runs/43167755597) · [Boardsource CI run](https://github.com/disarmyouwitha/zmk-javelin-steno/actions/runs/43167852080)
 
-The builds cover left, right, read-only probe and quad probe. Generated left/probe/quad devicetrees were checked for the locked active and sleep GPIO map. Hardware behavior remains to be tested.
-
-The owner wants ZMK Studio enabled. The current firmware baseline still disables it while three integration fixes are discussed: stable mode identity across layer edits, steno behavior parameter metadata, and USB endpoint/memory validation. Host layout remains in Javelin Steno Tools. These are tracked separately from the completed pin-map work. [Review status](docs/review-status.md)
+The earlier four local builds and their UF2 hashes are recorded in the [build receipt](https://github.com/disarmyouwitha/zmk-javelin-steno/blob/814ccfacb3aca3e5d9362cc7f57649fa54ed65fe/config/boardsource-wireless-corne/locked-pin-map-build.json). Studio and flash behavior still need a hardware test. Host layout stays in Javelin Steno Tools.
 
 ## Package, sourcing and assembly
 
@@ -67,12 +66,7 @@ The nice!view drawing confirms its 2.54 mm header pitch, and Boardsource documen
 
 [Applied and pending review items](docs/review-status.md) · [Electrical/assembly review](docs/design-review.md) · [Original Claude notes](docs/claude-review-2026-11-11.md) · [Claude review of Draft B](docs/claude-review-draft-b-2026-11-11.md)
 
-Open items from the Draft B review, to settle before ordering:
-
-- Add ground vias beside U1 and C1. The two ground pours currently meet only at header contact 6.
-- Widen VCC_SW from 0.2 mm to 0.4 mm or more and route it more directly. It is about 46 mm long.
-- Update the closing paragraph of `docs/review-status.md`: firmware `main` now builds with ZMK Studio on.
-- Host mating face and the P0.31 rail measurements are still pending.
+The Draft B review’s grounding, power routing and firmware documentation items are complete. The host mating face and P0.31 rail measurements remain open before ordering.
 
 Draft A under draft-1 preserves the SOIC version and its original mapping. Draft 0 is the initial electrical proposal. Draft B is the active WSON design. The native board currently has the squid on the back, pending final orientation. Artwork studies are in [artwork](artwork). Independently controlled RGB needs another control path and remains future work.
 

@@ -14,7 +14,7 @@ Standard pin/header dimensions provide a useful layout starting point. A direct 
 
 C1 is a populated 100 nF capacitor at the flash supply side. R1 is a 10 kΩ pull-up from CS# to switched VCC. C2 is an optional 1 µF footprint marked DNP pending inrush and host-rail review. IO2 and IO3 each have a dedicated GPIO connection.
 
-The trace width and copper clearance are 0.20 mm, with 0.25 mm minimum copper-to-edge clearance. The back ground plane provides the return path. Signal routing is recorded by net in draft-2/validation.json. Both layers carry ground pours. WSON pad 9 is grounded. A track/via keepout protects the exposed-pad area on both layers, with ground pours permitted. Header contacts provide accessible probe points. The host connector and MCU-side trace geometry still contribute to signal quality and cannot be assessed from this daughterboard alone.
+Signal traces and copper clearance are 0.20 mm, with a 0.25 mm minimum copper-to-edge clearance. VCC_SW is 0.40 mm throughout. Its total copper length dropped from 46.49 mm to 39.48 mm, and the segment count dropped from 55 to 15. The supply enters on J1 contact 5, reaches the C1 supply pad, and continues to U1 pad 8 on the front layer. This path is 8.46 mm and uses no vias. Three ground stitching vias tie the ground pours together near the loads, two beside U1 and one beside C1. WSON pad 9 remains grounded with a track/via keepout on both layers. Header contacts provide accessible probe points. Host-side trace geometry still needs hardware validation. [Routing measurements](../draft-2/validation.json)
 
 Start bench testing at a conservative supported QSPI clock and increase it only after repeated ID, SFDP and dictionary readback checks. Compare data/CRC across cold start, USB and battery operation, reconnect and sleep/wake. The flash's advertised maximum clock is a component limit rather than a tested interface speed.
 
@@ -28,7 +28,7 @@ Finish active writes before power removal. Put signal GPIOs into a safe state to
 
 ## Firmware interface
 
-The stock left matrix uses different GPIOs from the expansion signals. Keep that matrix unchanged. The upstream board currently enables SPI2 for nice!view on P0.23 SCK, P0.12 MOSI and P0.19 CS. The left QSPI build must release that display interface and give these pins to QSPI. The right display uses its own half's pins and can keep its display configuration. Firmware implementation and compilation are a separate integration step. [Upstream board definition](https://github.com/boardsource/wireless-corne_zmk_config/tree/master/boards/boardsource/blecorne)
+The stock left matrix uses different GPIOs from the expansion signals. Keep that matrix unchanged. The upstream board currently enables SPI2 for nice!view on P0.23 SCK, P0.12 MOSI and P0.19 CS. The left QSPI build must release that display interface and give these pins to QSPI. The right display uses its own half's pins and can keep its display configuration. The current Boardsource firmware active and sleep pin selections match Draft B. The Studio-enabled left, logging left, right and both probes pass CI. [Boardsource firmware CI](https://github.com/disarmyouwitha/zmk-javelin-steno/actions/runs/43167852080) [Upstream board definition](https://github.com/boardsource/wireless-corne_zmk_config/tree/master/boards/boardsource/blecorne)
 
 ## Fabrication and prototype strategy
 

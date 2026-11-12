@@ -53,6 +53,8 @@ expected = {1: ('CS_N',1), 2: ('IO0',5), 3: ('IO3',7), 4: ('IO1',2),
 assert {c['position']: (c['signal'], c['flash_pad']) for c in interface['contacts']} == expected
 
 lengths = {}
+segment_counts = {}
+minimum_widths = {}
 via_counts = {}
 for _, _, node in nodes(board):
     if kind(node) not in ['segment', 'via']:
@@ -65,10 +67,16 @@ for _, _, node in nodes(board):
         end = tuple(map(float, re.search(r'\(end ([\d.e+-]+) ([\d.e+-]+)\)', node).groups()))
         length = sum((a-b)**2 for a,b in zip(start,end)) ** 0.5
         lengths[net] = lengths.get(net, 0) + length
+        segment_counts[net] = segment_counts.get(net, 0) + 1
+        width = float(re.search(r'\(width ([\d.e+-]+)\)', node)[1])
+        minimum_widths[net] = min(width, minimum_widths.get(net, width))
+
+assert minimum_widths['/VCC_SW'] >= 0.4
+assert via_counts.get('/GND', 0) >= 3
 
 report = {
     'revision': interface['revision'],
-    'review_date': '2026-11-11',
+    'review_date': '2026-11-12',
     'ERC_violations': len(erc_issues),
     'DRC_violations': len(drc['violations']),
     'unconnected_items': len(drc['unconnected_items']),
@@ -78,6 +86,8 @@ report = {
     'power_and_contact_labels_on_both_faces': True,
     'configured_ignored_DRC_categories': drc['ignored_checks'],
     'copper_track_lengths_mm': {net: round(value, 3) for net, value in lengths.items()},
+    'minimum_track_widths_mm': minimum_widths,
+    'track_segment_counts': segment_counts,
     'via_counts': via_counts,
     'host_pitch_verified': False,
     'host_fit_verified': False,
