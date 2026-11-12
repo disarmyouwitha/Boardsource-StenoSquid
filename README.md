@@ -68,6 +68,6 @@ The nice!view drawing confirms its 2.54 mm header pitch, and Boardsource documen
 
 The Draft B review’s grounding, power routing and firmware documentation items are complete. The host mating face and P0.31 rail measurements remain open before ordering.
 
-Draft A under draft-1 preserves the SOIC version and its original mapping. Draft 0 is the initial electrical proposal. Draft B is the active WSON design. The native board currently has the squid on the back, pending final orientation. Artwork studies are in [artwork](artwork). Independently controlled RGB needs another control path and remains future work.
+Draft A under draft-1 preserves the SOIC version and its original mapping. Draft 0 is the initial electrical proposal. Draft B is the active WSON design. Draft B’s back silkscreen features a hand-drawn Inkling squid with ink droplets. The final artwork face depends on the host mounting orientation. [Back preview](draft-2/previews/back.png) · [Silkscreen vector](artwork/inkling-silkscreen.svg) Independently controlled RGB needs another control path and remains future work.
 
 Fabrication release follows host fit, power and assembly review. Source credits and the KiCad library exception are in [ATTRIBUTION.md](ATTRIBUTION.md) and [LICENSES](LICENSES). A redistribution license for the original design has yet to be selected.
