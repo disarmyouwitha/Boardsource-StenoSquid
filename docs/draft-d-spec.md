@@ -65,9 +65,21 @@ Margins are 0.7 mm to the key holes and 0.8 mm to the plate edge. The row's posi
 
 The owner does not want R2's continuous draw (about 33 µA at 100 kΩ while the rail is on) unless it is needed. The breadboard test with the Adafruit breakout measures how fast the switched rail falls. If it is too slow, fit a larger R2 (470 kΩ to 1 MΩ, 3 to 7 µA) with C2 left off: against C1 alone that gives a time constant of 50 to 100 ms. Keep both footprints.
 
+## Antenna (suspected, unverified)
+
+From the owner's close-up photo of the host board's centre edge, a narrow white ceramic strip on each module's inner edge looks like the antenna. This is a visual inference only. No Boardsource RF drawing or part identification has been found. On the left half it lies about 4 mm below the header row (scale from the hole pitch, roughly 25 px per mm) and lines up with header pins 7 and 8, near the plate's right edge. The squid sits above the row, over the battery cutout, so there is little overlap seen from above. The one place it reaches is the bottom-right corner, 1.92 mm below the row and 3 to 4 mm from the antenna in plan.
+
+Rules until the antenna is identified:
+
+1. Keep the artwork area free of copper on both layers where possible. Draw the Inkling in silkscreen. Exposed gold or copper artwork (`artwork/gold-eyes.svg`) waits for a passing Bluetooth test.
+2. Keep the ground pour compact, around the flash, the passives and the contact row. Do not fill the whole board with ground.
+3. Keep the bottom-right corner (x > 14 mm, y < 3 mm) free of copper apart from the pin pads.
+4. Once the antenna part is known, replace these with its datasheet keepout.
+5. Bluetooth range is a pass/fail test on the real board, with the squid fitted and removed, in the same place.
+
 ## Artwork
 
-The Inkling goes on the top face between and around the parts: silkscreen in the free area (y 15 to 43 is clear), or exposed copper or gold over the ground pour (see `artwork/gold-eyes.svg`). Silkscreen cannot cover pads. The area is far larger than Draft B's, so the squid can be drawn about twice as large.
+The Inkling goes on the top face between and around the parts: silkscreen in the free area (y 15 to 43 is clear), or exposed copper or gold over the ground pour (see `artwork/gold-eyes.svg`). Silkscreen cannot cover pads. See Antenna before using exposed copper or gold. The area is far larger than Draft B's, so the squid can be drawn about twice as large.
 
 ## Board
 
@@ -85,7 +97,7 @@ Below the squid's underside the pins must pass the plate, the PCB-to-plate gap a
 2. Plate thickness, PCB thickness, and the PCB-to-plate gap.
 3. Distance from the key holes to the plate edge, and the keycap overhang.
 4. Whether the plate is conductive.
-5. Where the antenna is. Neither the photos nor the docs show it, and a ground-pour board near it could hurt range.
+5. Where the antenna is. The photo suggests a ceramic strip on the inner edge below the row (see Antenna), but nothing confirms it. Check the delivered board and ask Boardsource.
 6. The switched rail on pin 5: voltage on USB and battery, polarity of P0.31, how fast it falls when switched off.
 
 ## For Codex
