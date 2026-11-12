@@ -19,6 +19,15 @@ A QSPI flash daughterboard for the **left expansion header of the Boardsource Wi
 
 The current component face and artwork face are placement candidates. Verify the host's pin-1 end, mating face, body overhang, battery/antenna clearance and header height on the delivered board. The generic header model represents the candidate assembly. Final mounting geometry follows those measurements.
 
+## Draft C back-mounted comparison
+
+Draft C puts the flash and passives on the host-facing back and the Inkling on the outward front, rotated 180° relative to Draft B's artwork. Viewed from the artwork side with the contact row at the top, pin 1 is at the right. [Mounting details and CAD](draft-3/README.md)
+
+| | Draft B | Draft C |
+|---|---|---|
+| Front | [Components](draft-2/previews/front.png) | [Rotated Inkling](draft-3/previews/front.png) |
+| Back | [Inkling](draft-2/previews/back.png) | [Components](draft-3/previews/back.png) |
+
 ## Locked interface
 
 The owner locked this map on 2026-11-11. Draft B shows contact 1 at the left in component-side view, header along the top. Confirm the matching host face before fitting it.

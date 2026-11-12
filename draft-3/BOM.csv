@@ -1,0 +1,7 @@
+Reference,Quantity,Value,Manufacturer,Prototype_MPN,Footprint,Population,Source,Notes
+U1,1,128Mbit QSPI NOR,Winbond,W25Q128JVPIQ,WSON-8 6x5mm P1.27mm EP3.4x4.3mm,Fit,https://jlcpcb.com/partdetail/WinbondElec-W25Q128JVPIQ/C190862,JLC C190862 Extended; package P verified; lifecycle N; check current stock and assembler stencil
+C1,1,100nF 16V X7R,Murata,GRM188R71C104KA01D,0603 1608 metric,Fit,https://www.digikey.com/en/products/detail/murata-electronics/GRM188R71C104KA01D/587060,Local decoupling; substitute equivalent approved part if unavailable
+R1,1,10k 1%,Yageo,RC0603FR-0710KL,0603 1608 metric,Fit,https://www.digikey.com/en/products/detail/yageo/RC0603FR-0710KL/729827,CS pull-up to switched VCC; check stock at order time
+C2,1,1uF 10V X5R,Murata,GRM188R61A105KA61D,0603 1608 metric,DNP,https://www.digikey.com/en/products/detail/murata-electronics/GRM188R61A105KA61D/587071,Optional bulk pending host inrush/discharge review
+J1,1,1x08 2.54mm interface,TBD,TBD,1x08 P2.54mm 1.0mm drill,Mechanical selection pending,https://nicekeyboards.com/docs/nice-view/pinout-schematic/,Short soldered pins are a candidate; final body/tail height needs host fit check
+R2,1,100k 1%,Yageo,RC0603FR-07100KL,0603 1608 metric,DNP,https://www.digikey.com/en/products/detail/yageo/RC0603FR-07100KL/729836,Optional discharge; choose population/value from host rail decay measurement

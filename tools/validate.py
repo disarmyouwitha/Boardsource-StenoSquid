@@ -1,4 +1,5 @@
 """Verify current reports and connector mapping, then record CAD hashes."""
+from argparse import ArgumentParser
 from pathlib import Path
 import hashlib
 import json
@@ -7,7 +8,9 @@ import xml.etree.ElementTree as ET
 from build_placement import nodes, kind
 
 root = Path(__file__).resolve().parents[1]
-output = root / 'draft-2'
+parser = ArgumentParser(description=__doc__)
+parser.add_argument('draft', nargs='?', default='draft-2', choices=['draft-2', 'draft-3'])
+output = root / parser.parse_args().draft
 interface = json.loads((output / 'interface.json').read_text())
 drc = json.loads((output / 'checks/drc.json').read_text())
 erc = json.loads((output / 'checks/erc.json').read_text())
@@ -42,7 +45,7 @@ assert ('C1', '1') in members['VCC_SW'] and ('C1', '2') in members['GND']
 assert ('R1', '1') in members['VCC_SW'] and ('R1', '2') in members['CS_N']
 assert ('R2', '1') in members['VCC_SW'] and ('R2', '2') in members['GND']
 assert ('U1', '9') in members['GND'] and pad_net('U1', 9) == 'GND'
-assert not drc['ignored_checks'], 'Draft B requires every DRC category enabled'
+assert not drc['ignored_checks'], 'Every DRC category must be enabled'
 for layer in ['F.SilkS', 'B.SilkS']:
     texts = [node for _, _, node in nodes(board) if kind(node) == 'gr_text' and f'(layer "{layer}")' in node]
     for legend in ['VCC', 'GND'] + [str(number) for number in range(1,9)]:
