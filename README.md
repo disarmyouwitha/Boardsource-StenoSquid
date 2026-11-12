@@ -73,7 +73,7 @@ The nice!view drawing confirms its 2.54 mm header pitch, and Boardsource documen
 
 ## Review record and earlier drafts
 
-[Applied and pending review items](docs/review-status.md) · [Electrical/assembly review](docs/design-review.md) · [Original Claude notes](docs/claude-review-2026-11-11.md) · [Claude review of Draft B](docs/claude-review-draft-b-2026-11-11.md)
+[Applied and pending review items](docs/review-status.md) · [Electrical/assembly review](docs/design-review.md) · [Original Claude notes](docs/claude-review-2026-11-11.md) · [Claude review of Draft B](docs/claude-review-draft-b-2026-11-11.md) · [Plate, mounting and rail notes](docs/claude-plate-and-mounting-2026-11-12.md) · [Draft D design brief](docs/draft-d-spec.md) · [Draft D plate fit drawing](docs/draft-d-plate-fit.svg)
 
 The Draft B review’s grounding, power routing and firmware documentation items are complete. The host mating face and P0.31 rail measurements remain open before ordering.
 
