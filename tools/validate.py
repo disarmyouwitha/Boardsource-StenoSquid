@@ -7,7 +7,7 @@ import xml.etree.ElementTree as ET
 from build_placement import nodes, kind
 
 root = Path(__file__).resolve().parents[1]
-output = root / 'draft-1'
+output = root / 'draft-2'
 interface = json.loads((output / 'interface.json').read_text())
 drc = json.loads((output / 'checks/drc.json').read_text())
 erc = json.loads((output / 'checks/erc.json').read_text())
@@ -40,6 +40,17 @@ for contact in interface['contacts']:
         assert pad_net(reference, number) == signal
 assert ('C1', '1') in members['VCC_SW'] and ('C1', '2') in members['GND']
 assert ('R1', '1') in members['VCC_SW'] and ('R1', '2') in members['CS_N']
+assert ('R2', '1') in members['VCC_SW'] and ('R2', '2') in members['GND']
+assert ('U1', '9') in members['GND'] and pad_net('U1', 9) == 'GND'
+assert not drc['ignored_checks'], 'Draft B requires every DRC category enabled'
+for layer in ['F.SilkS', 'B.SilkS']:
+    texts = [node for _, _, node in nodes(board) if kind(node) == 'gr_text' and f'(layer "{layer}")' in node]
+    for legend in ['VCC', 'GND'] + [str(number) for number in range(1,9)]:
+        assert any(node.startswith(f'(gr_text "{legend}"') for node in texts), (layer, legend)
+# Parse the frozen pin map independently of the baseline's signal order.
+expected = {1: ('CS_N',1), 2: ('IO0',5), 3: ('IO3',7), 4: ('IO1',2),
+            5: ('VCC_SW',8), 6: ('GND',4), 7: ('CLK',6), 8: ('IO2',3)}
+assert {c['position']: (c['signal'], c['flash_pad']) for c in interface['contacts']} == expected
 
 lengths = {}
 via_counts = {}
@@ -56,13 +67,15 @@ for _, _, node in nodes(board):
         lengths[net] = lengths.get(net, 0) + length
 
 report = {
-    'revision': 'A provisional',
+    'revision': interface['revision'],
     'review_date': '2026-11-11',
     'ERC_violations': len(erc_issues),
     'DRC_violations': len(drc['violations']),
     'unconnected_items': len(drc['unconnected_items']),
     'schematic_parity_issues': len(drc['schematic_parity']),
     'all_eight_contacts_verified_against_schematic_and_PCB': True,
+    'exposed_pad_grounded': True,
+    'power_and_contact_labels_on_both_faces': True,
     'configured_ignored_DRC_categories': drc['ignored_checks'],
     'copper_track_lengths_mm': {net: round(value, 3) for net, value in lengths.items()},
     'via_counts': via_counts,

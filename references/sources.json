@@ -9,5 +9,11 @@
   "layout_review_date": "2026-11-11",
   "niceview_dimensions": "https://nicekeyboards.com/static/2f2592ff1ff8021932814b20cb76e3c4/a6d36/niceview_dimensions.png",
   "flash_manufacturer_datasheet": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7159/W25Q128JV.pdf",
-  "flash_datasheet_reviewed": "Winbond W25Q128JV Revision M, December 24 2024; package section 10.1, electrical sections 9.2-9.4"
+  "flash_datasheet_reviewed": "Winbond W25Q128JV Revision M, December 24 2024; package section 10.1, electrical sections 9.2-9.4",
+  "draft_B_review_date": "2026-11-11",
+  "locked_map_review_commit": "e76c48524b41f3bfae3632a1726e7d2728acfb40",
+  "Nordic_pin_assignments": "https://docs.nordicsemi.com/bundle/ps_nrf52840/page/pin.html",
+  "WSON_assembly_part": "https://jlcpcb.com/partdetail/WinbondElec-W25Q128JVPIQ/C190862",
+  "WSON_land_pattern": "Winbond W25Q128JV Revision M section 10.3, package P",
+  "firmware_pin_map_branch": "https://github.com/disarmyouwitha/zmk-javelin-steno/tree/steno-squid/locked-pin-map"
 }

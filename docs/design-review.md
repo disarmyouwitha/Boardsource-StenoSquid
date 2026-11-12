@@ -1,12 +1,12 @@
-# Draft A design review
+# Draft B design review
 
-The direct eight-contact module is the primary design. The host pin order is fixed, while flash signal assignments among its six GPIOs can be revisited if testing or routing warrants it. The initial proposal routed successfully on two layers with the handoff mapping.
+The direct eight-contact module is the primary design. The host pin order is fixed, while the six QSPI signal assignments are locked by the owner. Draft B and the matching firmware implement the map in the root README.
 
 ## Mechanical basis
 
 The known nice!view drawing shows a 2.54 mm pitch. Boardsource documents nice!view support, and its default SPI signals plus supply/ground occupy consecutive expansion positions 3–7 in nice!view order. This supports a 2.54 mm working interface. A dimensioned host expansion drawing was not located in the reviewed public product pages and open-files tree. The user expects the physical board this weekend.
 
-Draft A chooses a 22 × 17 mm rectangle, 1.0 mm thickness, 1.0 mm connector drills and 0.6/0.3 mm vias. These are daughterboard design choices. Host pitch, full row geometry, connector orientation, drill dimensions and case fit remain to be measured. The stock pin-header model is representative and taller than some low-profile options. The final mounting arrangement may place the mating hardware on the opposite face and will require a refreshed assembly model.
+Draft B keeps a 22 × 17 mm rectangle, 1.0 mm thickness, 1.0 mm connector drills and 0.6/0.3 mm vias. These are daughterboard design choices. Host pitch, full row geometry, connector orientation, drill dimensions and case fit remain to be measured. The stock pin-header model is representative and taller than some low-profile options. The final mounting arrangement may place the mating hardware on the opposite face and will require a refreshed assembly model.
 
 Standard pin/header dimensions provide a useful layout starting point. A direct soldered short-pin assembly can lower the stack. A socket permits removal if the height fits. A rigid offset adapter remains an option if the host antenna, plate or neighboring parts require it.
 
@@ -14,7 +14,7 @@ Standard pin/header dimensions provide a useful layout starting point. A direct 
 
 C1 is a populated 100 nF capacitor at the flash supply side. R1 is a 10 kΩ pull-up from CS# to switched VCC. C2 is an optional 1 µF footprint marked DNP pending inrush and host-rail review. IO2 and IO3 each have a dedicated GPIO connection.
 
-The trace width and copper clearance are 0.20 mm, with 0.25 mm minimum copper-to-edge clearance. The back ground plane provides the return path. Clock, CS, IO0 and IO3 remain on the front. IO1 and IO2 each use one via. Ground pads connect through nearby vias outside their SMD lands. Header contacts provide accessible probe points. The host connector and MCU-side trace geometry still contribute to signal quality and cannot be assessed from this daughterboard alone.
+The trace width and copper clearance are 0.20 mm, with 0.25 mm minimum copper-to-edge clearance. The back ground plane provides the return path. Signal routing is recorded by net in draft-2/validation.json. Both layers carry ground pours. WSON pad 9 is grounded. A track/via keepout protects the exposed-pad area on both layers, with ground pours permitted. Header contacts provide accessible probe points. The host connector and MCU-side trace geometry still contribute to signal quality and cannot be assessed from this daughterboard alone.
 
 Start bench testing at a conservative supported QSPI clock and increase it only after repeated ID, SFDP and dictionary readback checks. Compare data/CRC across cold start, USB and battery operation, reconnect and sleep/wake. The flash's advertised maximum clock is a component limit rather than a tested interface speed.
 
@@ -32,6 +32,14 @@ The stock left matrix uses different GPIOs from the expansion signals. Keep that
 
 ## Fabrication and prototype strategy
 
-Use black solder mask, white silkscreen and ENIG for the proposed finish. Confirm 1.0 mm thickness with the assembler and selected connector. Assemble flash, C1 and R1 on the front. Leave C2 empty initially. Inspect orientation and shorts, verify supply behavior, then read JEDEC ID and SFDP before programming the dictionary. The board and host mating orientation need explicit review before the first fabrication release.
+Use black solder mask, white silkscreen and ENIG for the proposed finish. Confirm 1.0 mm thickness with the assembler and selected connector. Assemble flash, C1 and R1 on the front. Leave C2 and R2 empty initially. Inspect orientation and shorts, verify supply behavior, then read JEDEC ID and SFDP before programming the dictionary. The board and host mating orientation need explicit review before the first fabrication release.
 
-The public repository contains native CAD, reports, BOM candidates, STEP and previews. Manufacturing Gerbers are deferred until the fit and host supply checks. The native DRC report records all configured ignored-check categories. Passing ERC/DRC establishes the reported CAD checks, while compatibility, signal integrity and firmware behavior still require the prototype.
+The public repository contains native CAD, reports, BOM candidates, STEP and previews. Manufacturing Gerbers are deferred until the fit and host supply checks. All DRC categories are enabled and the current report contains no ignored categories. Passing ERC/DRC establishes the reported CAD checks, while compatibility, signal integrity and firmware behavior still require the prototype.
+
+## Optional discharge resistor
+
+R2 is a 100 kΩ footprint between VCC_SW and GND, DNP initially. At 3.3 V it draws 33 µA when populated. With only the local 100 nF, an ideal RC discharge to 0.8 V takes approximately 14 ms. Populating the optional 1 µF raises that estimate to 156 ms. Host capacitance, leakage, active discharge and backpower can change these times. Choose the resistance and firmware off interval from measured decay, including Winbond's required dwell below the reset threshold.
+
+## WSON land and height review
+
+The custom land pattern uses 1.15 × 0.60 mm terminal lands at 1.27 mm pitch and a grounded 3.4 × 4.3 mm exposed pad. Four 1.3 × 1.7 mm paste windows provide about 60% coverage. Have the assembler confirm the terminal lands, stencil and paste volume. The package-P body is at most 0.8 mm high, while the selected C1 can reach 0.9 mm before solder-joint allowance. Actual low-profile clearance also depends on components on the host face. [Winbond package drawing](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7159/W25Q128JV.pdf), [Murata capacitor drawing](https://docs.rs-online.com/b196/0900766b8138861e.pdf)
