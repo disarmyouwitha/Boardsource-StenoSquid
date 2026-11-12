@@ -26,7 +26,7 @@ What that implies:
 
 ## Rail, R2 and C2
 
-- Fit R2 and C2 together or not at all. C2 alone makes the rail fall more slowly.
+- **Update 2026-11-12: leave R2 and C2 unfitted** for now, to avoid R2's continuous draw. If the breadboard test shows a slow fall, fit a larger R2 (470 kΩ to 1 MΩ) with C2 off. C2 alone makes the rail fall more slowly. The figures below are for the case with both fitted.
 - With both fitted the time constant is about 100 kΩ × 1.1 µF ≈ 110 ms, and the rail needs about 0.26 s to fall below 0.3 V. R2 costs about 33 µA while the rail is on.
 - Firmware: the pause with the rail off between flash start-up retries is now 500 ms, in `claude/review-fixes` (`86a30ae`). It was 100 ms.
 - To measure on the host: rail voltage on USB and on battery (the flash is specified for roughly 2.7 to 3.6 V), the polarity of P0.31 (the vendor does not state it, and the firmware assumes high is on), how fast the rail falls when P0.31 switches it off, and what else loads it.

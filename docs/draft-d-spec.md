@@ -8,7 +8,7 @@ Proposed 2026-11-12 by Claude, from the owner's decisions. Not built: Claude has
 - It mounts through the plate's header slot on extended header pins, into the Boardsource header holes.
 - It fills the solid plate area right of the key block, as far as the plate allows.
 - The Inkling is drawn on the top face, around the components.
-- Choc switches. Pin map, WSON-8 flash (W25Q128JVPIQ) and all other parts as in Draft B, with **R2 and C2 fitted**.
+- Choc switches. Pin map, WSON-8 flash (W25Q128JVPIQ) and all other parts as in Draft B. **R2 and C2 are footprints only, not fitted**, until the breadboard test says the switched rail falls too slowly (see Rail bleed).
 
 ## Orientation and pinout, checked against sources
 
@@ -56,10 +56,14 @@ Margins are 0.7 mm to the key holes and 0.8 mm to the plate edge. The row's posi
 
 ## Parts
 
-- U1 flash, C1, R1, C2 and R2, all fitted, top face.
+- U1 flash, C1 and R1 fitted, top face. C2 and R2 have pads but are not fitted (DNP).
 - Parts zone: x ≥ 0 and y 0.9 to 14, close to the row so the QSPI traces stay short.
 - Keep tall parts away from the key side: nothing taller than the bare board within 2.5 mm of the key holes (x < 0), because Choc keycaps overhang their holes. Parts reach 0.9 mm (C1) and 0.8 mm (flash) above a 1.0 mm board, about 1.9 mm above the plate.
 - Keep the 0.4 mm VCC_SW track, the ground vias and the grounded flash pad from Draft B.
+
+## Rail bleed (open)
+
+The owner does not want R2's continuous draw (about 33 µA at 100 kΩ while the rail is on) unless it is needed. The breadboard test with the Adafruit breakout measures how fast the switched rail falls. If it is too slow, fit a larger R2 (470 kΩ to 1 MΩ, 3 to 7 µA) with C2 left off: against C1 alone that gives a time constant of 50 to 100 ms. Keep both footprints.
 
 ## Artwork
 
@@ -86,4 +90,4 @@ Below the squid's underside the pins must pass the plate, the PCB-to-plate gap a
 
 ## For Codex
 
-Build Draft D in a new `draft-4` folder from the Draft B netlist, with the layout above. Run the checks with nothing ignored, and update `interface.json`, `validation.json`, the BOM (R2 and C2 fitted) and the README. Test-print the outline and the contact row at 1:1 and hold it against the plate before ordering.
+Build Draft D in a new `draft-4` folder from the Draft B netlist, with the layout above. Run the checks with nothing ignored, and update `interface.json`, `validation.json`, the BOM (C2 and R2 not fitted) and the README. Test-print the outline and the contact row at 1:1 and hold it against the plate before ordering.
