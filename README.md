@@ -2,7 +2,7 @@
 
 Steno Squid adds 16 MB of QSPI flash for Javelin stenography to the left half of the Boardsource Wireless Corne SMT. It is an independent community accessory designed to sit flush on top of the Choc switch plate.
 
-[Board preview](draft-4/previews/front.png) · [KiCad project](draft-4/steno-squid.kicad_pro) · [Actual-size fit template](draft-4/previews/plate-fit-1to1.svg) · [STEP model](draft-4/steno-squid.step) · [BOM](draft-4/BOM.csv)
+[Board preview](pcb/previews/front.png) · [KiCad project](pcb/steno-squid.kicad_pro) · [Actual-size fit template](pcb/previews/plate-fit-1to1.svg) · [STEP model](pcb/steno-squid.step) · [BOM](pcb/BOM.csv)
 
 ## Hardware
 
@@ -28,11 +28,11 @@ Use this map for the Adafruit flash breakout proof of concept. The left expansio
 
 ## Prototype status
 
-KiCad reports zero ERC, DRC, unconnected items and schematic-parity issues with every DRC category enabled. Physical fit, power and Bluetooth performance still need verification. [CAD validation](draft-4/validation.json)
+KiCad reports zero ERC, DRC, unconnected items and schematic-parity issues with every DRC category enabled. Physical fit, power and Bluetooth performance still need verification. [CAD validation](pcb/validation.json)
 
 1. Print the fit template at 100% and check its 50 mm scale bar. Confirm the contact row and pin-1 position, USB plug and keycap clearance, plate material and mounting stack before choosing pin length.
 2. Check the switched rail on USB and battery. Measure voltage under load, control polarity, shared loads and discharge with the breakout before deciding whether to populate R2 or C2.
 3. Identify the host antenna and check its specified clearance against the plate, pins and daughterboard. Compare host and split Bluetooth performance with the module fitted and removed under the same conditions.
 4. Review the WSON land pattern and stencil with the assembler. On the prototype, confirm flash ID, quad mode, readback and dictionary integrity across power cycles.
 
-[Mounting and CAD notes](draft-4/README.md) · [Electrical and RF review](docs/design-review.md) · [Source credits and license status](ATTRIBUTION.md)
+[Mounting and CAD notes](pcb/README.md) · [Electrical and RF review](docs/design-review.md) · [Source credits and license status](ATTRIBUTION.md) · [Design history](docs/history.md)

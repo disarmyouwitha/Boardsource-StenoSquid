@@ -1,16 +1,12 @@
 """Verify current reports and connector mapping, then record CAD hashes."""
-from argparse import ArgumentParser
 from pathlib import Path
 import hashlib
 import json
 import re
 import xml.etree.ElementTree as ET
-from build_placement import nodes, kind
+from kicad_sexpr import nodes, kind
 
-root = Path(__file__).resolve().parents[1]
-parser = ArgumentParser(description=__doc__)
-parser.add_argument('draft', nargs='?', default='draft-2', choices=['draft-2', 'draft-3', 'draft-4'])
-output = root / parser.parse_args().draft
+output = Path(__file__).resolve().parents[1] / 'pcb'
 interface = json.loads((output / 'interface.json').read_text())
 drc = json.loads((output / 'checks/drc.json').read_text())
 erc = json.loads((output / 'checks/erc.json').read_text())

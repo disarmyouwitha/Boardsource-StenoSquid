@@ -2,11 +2,11 @@
 
 ## Mechanical basis
 
-The daughterboard sits on top of the left Choc switch plate, with eight bare pins through the plate slot. The 2.54 mm pitch and top-view contact order are inferred from Boardsource's expansion pinout and its nice!view compatibility. The plate envelope comes from a scaled image. Verify the host pin-1 position, slot width, USB plug clearance and plate-to-host stack on the actual keyboard. [Boardsource documentation](https://boardsource.xyz/blogs/guides/wireless-smt-corne-docs) · [nice!view drawing](https://nicekeyboards.com/docs/nice-view/pinout-schematic/) · [Board and fit template](../draft-4/README.md)
+The daughterboard sits on top of the left Choc switch plate, with eight bare pins through the plate slot. The 2.54 mm pitch and top-view contact order are inferred from Boardsource's expansion pinout and its nice!view compatibility. The plate envelope comes from a scaled image. Verify the host pin-1 position, slot width, USB plug clearance and plate-to-host stack on the actual keyboard. [Boardsource documentation](https://boardsource.xyz/blogs/guides/wireless-smt-corne-docs) · [nice!view drawing](https://nicekeyboards.com/docs/nice-view/pinout-schematic/) · [Board and fit template](../pcb/README.md)
 
 ## Circuit and routing
 
-C1 is 100 nF at the flash supply. R1 pulls CS# up to switched VCC through 10 kΩ. C2 and R2 remain unpopulated until rail measurements support a change. The 0.40 mm front-layer supply runs from J1 contact 5 through C1 to U1 pad 8 without vias. Three stitching vias connect the local ground pours. Flash pad 9 is grounded with a track and via keepout under the exposed pad. [Routing measurements](../draft-4/validation.json)
+C1 is 100 nF at the flash supply. R1 pulls CS# up to switched VCC through 10 kΩ. C2 and R2 remain unpopulated until rail measurements support a change. The 0.40 mm front-layer supply runs from J1 contact 5 through C1 to U1 pad 8 without vias. Three stitching vias connect the local ground pours. Flash pad 9 is grounded with a track and via keepout under the exposed pad. [Routing measurements](../pcb/validation.json)
 
 ## Antenna clearance and Bluetooth test
 
