@@ -79,7 +79,7 @@ Rules until the antenna is identified:
 
 ## Artwork
 
-The Inkling goes on the top face between and around the parts: silkscreen in the free area (y 15 to 43 is clear), or exposed copper or gold over the ground pour (see `artwork/gold-eyes.svg`). Silkscreen cannot cover pads. See Antenna before using exposed copper or gold. The area is far larger than Draft B's, so the squid can be drawn about twice as large.
+The Inkling is white top silkscreen in the free area above the components. The artwork area has a copper keepout on both layers. The exposed-copper study in `artwork/gold-eyes.svg` is deferred pending antenna identification and Bluetooth testing.
 
 ## Board
 

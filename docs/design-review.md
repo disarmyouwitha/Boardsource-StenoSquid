@@ -1,22 +1,20 @@
-# Draft B design review
-
-The direct eight-contact module is the primary design. The host pin order is fixed, while the six QSPI signal assignments are locked by the owner. Draft B and the matching firmware implement the map in the root README.
+# Electrical, mechanical and RF review
 
 ## Mechanical basis
 
-The known nice!view drawing shows a 2.54 mm pitch. Boardsource documents nice!view support, and its default SPI signals plus supply/ground occupy consecutive expansion positions 3–7 in nice!view order. This supports a 2.54 mm working interface. A dimensioned host expansion drawing was not located in the reviewed public product pages and open-files tree. The user expects the physical board this weekend.
-
-Draft B keeps a 22 × 17 mm rectangle, 1.0 mm thickness, 1.0 mm connector drills and 0.6/0.3 mm vias. These are daughterboard design choices. Host pitch, full row geometry, connector orientation, drill dimensions and case fit remain to be measured. The stock pin-header model is representative and taller than some low-profile options. The final mounting arrangement may place the mating hardware on the opposite face and will require a refreshed assembly model.
-
-Standard pin/header dimensions provide a useful layout starting point. A direct soldered short-pin assembly can lower the stack. A socket permits removal if the height fits. A rigid offset adapter remains an option if the host antenna, plate or neighboring parts require it.
+The daughterboard sits on top of the left Choc switch plate, with eight bare pins through the plate slot. The 2.54 mm pitch and top-view contact order are inferred from Boardsource's expansion pinout and its nice!view compatibility. The plate envelope comes from a scaled image. Verify the host pin-1 position, slot width, USB plug clearance and plate-to-host stack on the actual keyboard. [Boardsource documentation](https://boardsource.xyz/blogs/guides/wireless-smt-corne-docs) · [nice!view drawing](https://nicekeyboards.com/docs/nice-view/pinout-schematic/) · [Board and fit template](../draft-4/README.md)
 
 ## Circuit and routing
 
-C1 is a populated 100 nF capacitor at the flash supply side. R1 is a 10 kΩ pull-up from CS# to switched VCC. C2 is an optional 1 µF footprint marked DNP pending inrush and host-rail review. IO2 and IO3 each have a dedicated GPIO connection.
+C1 is 100 nF at the flash supply. R1 pulls CS# up to switched VCC through 10 kΩ. C2 and R2 remain unpopulated until rail measurements support a change. The 0.40 mm front-layer supply runs from J1 contact 5 through C1 to U1 pad 8 without vias. Three stitching vias connect the local ground pours. Flash pad 9 is grounded with a track and via keepout under the exposed pad. [Routing measurements](../draft-4/validation.json)
 
-Signal traces and copper clearance are 0.20 mm, with a 0.25 mm minimum copper-to-edge clearance. VCC_SW is 0.40 mm throughout. Its total copper length dropped from 46.49 mm to 39.48 mm, and the segment count dropped from 55 to 15. The supply enters on J1 contact 5, reaches the C1 supply pad, and continues to U1 pad 8 on the front layer. This path is 8.46 mm and uses no vias. Three ground stitching vias tie the ground pours together near the loads, two beside U1 and one beside C1. WSON pad 9 remains grounded with a track/via keepout on both layers. Header contacts provide accessible probe points. Host-side trace geometry still needs hardware validation. [Routing measurements](../draft-2/validation.json)
+## Antenna clearance and Bluetooth test
 
-Start bench testing at a conservative supported QSPI clock and increase it only after repeated ID, SFDP and dictionary readback checks. Compare data/CRC across cold start, USB and battery operation, reconnect and sleep/wake. The flash's advertised maximum clock is a component limit rather than a tested interface speed.
+The suspected host antenna is based on a photo. Its part, exact position and clearance requirements remain unverified. The daughterboard artwork area has a copper keepout on both layers. In the provisional lower-right corner (x > 14 mm, y < 3 mm in the plate frame), the remaining copper is limited to contacts 6–8 and their short traces for GND, CLK and IO2. There are no pours or vias in that corner.
+
+Pads, traces and bare pins can still detune the antenna or change its radiation pattern if they are close enough. The plate material and final stack also matter. Confirm the antenna's actual keepout against the assembled geometry. KiCad checks the layout rules drawn in the board file. Bluetooth performance requires measurement on the assembled keyboard. [Infineon antenna layout guidelines, section 12](https://www.infineon.com/assets/row/public/documents/cross-divisions/42/infineon-an91445-antenna-design-and-rf-layout-guidelines-applicationnotes-en.pdf)
+
+Compare Bluetooth with the module removed and fitted, using the same plate, case, positions, orientations and distances. Check both the left-to-right link and the left-to-host link. Compare RSSI where available, and watch for reduced usable range, dropouts or reconnects. With the module fitted, repeat during flash activity to check whether traffic on the QSPI lines changes the result.
 
 ## Host power qualification
 
@@ -28,11 +26,11 @@ Finish active writes before power removal. Put signal GPIOs into a safe state to
 
 ## Firmware interface
 
-The stock left matrix uses different GPIOs from the expansion signals. Keep that matrix unchanged. The upstream board currently enables SPI2 for nice!view on P0.23 SCK, P0.12 MOSI and P0.19 CS. The left QSPI build must release that display interface and give these pins to QSPI. The right display uses its own half's pins and can keep its display configuration. The current Boardsource firmware active and sleep pin selections match Draft B. The Studio-enabled left, logging left, right and both probes pass CI. [Boardsource firmware CI](https://github.com/disarmyouwitha/zmk-javelin-steno/actions/runs/43167852080) [Upstream board definition](https://github.com/boardsource/wireless-corne_zmk_config/tree/master/boards/boardsource/blecorne)
+The stock left matrix uses different GPIOs from the expansion signals. Keep that matrix unchanged. The upstream board currently enables SPI2 for nice!view on P0.23 SCK, P0.12 MOSI and P0.19 CS. The left QSPI build must release that display interface and give these pins to QSPI. The right display uses its own half's pins and can keep its display configuration. The tested Boardsource firmware uses the same QSPI assignments in its active and sleep states. The Studio-enabled left, logging left, right and both probes pass CI. [Boardsource firmware CI](https://github.com/disarmyouwitha/zmk-javelin-steno/actions/runs/43167852080) [Upstream board definition](https://github.com/boardsource/wireless-corne_zmk_config/tree/master/boards/boardsource/blecorne)
 
 ## Fabrication and prototype strategy
 
-Use black solder mask, white silkscreen and ENIG for the proposed finish. Confirm 1.0 mm thickness with the assembler and selected connector. Assemble flash, C1 and R1 on the front. Leave C2 and R2 empty initially. Inspect orientation and shorts, verify supply behavior, then read JEDEC ID and SFDP before programming the dictionary. The board and host mating orientation need explicit review before the first fabrication release.
+Use black solder mask, white silkscreen and ENIG for the proposed finish. Confirm 1.0 mm thickness with the assembler and selected connector. Assemble flash, C1 and R1 on the front. Leave C2 and R2 empty initially. Inspect orientation and shorts, verify supply behavior, then read JEDEC ID and SFDP before programming the dictionary. Confirm host contact alignment, plate fit and RF clearance before the first fabrication release.
 
 The public repository contains native CAD, reports, BOM candidates, STEP and previews. Manufacturing Gerbers are deferred until the fit and host supply checks. All DRC categories are enabled and the current report contains no ignored categories. Passing ERC/DRC establishes the reported CAD checks, while compatibility, signal integrity and firmware behavior still require the prototype.
 
@@ -42,4 +40,4 @@ R2 is a 100 kΩ footprint between VCC_SW and GND, DNP initially. At 3.3 V it dra
 
 ## WSON land and height review
 
-The custom land pattern uses 1.15 × 0.60 mm terminal lands at 1.27 mm pitch and a grounded 3.4 × 4.3 mm exposed pad. Four 1.3 × 1.7 mm paste windows provide about 60% coverage. Have the assembler confirm the terminal lands, stencil and paste volume. The package-P body is at most 0.8 mm high, while the selected C1 can reach 0.9 mm before solder-joint allowance. Actual low-profile clearance also depends on components on the host face. [Winbond package drawing](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7159/W25Q128JV.pdf), [Murata capacitor drawing](https://docs.rs-online.com/b196/0900766b8138861e.pdf)
+The custom land pattern uses 1.15 × 0.60 mm terminal lands at 1.27 mm pitch and a grounded 3.4 × 4.3 mm exposed pad. Four 1.3 × 1.7 mm paste windows provide about 60% coverage. Have the assembler confirm the terminal lands, stencil and paste volume. The package-P body is at most 0.8 mm high, while the selected C1 can reach 0.9 mm before solder-joint allowance. Check the resulting height above the switch plate against keycap overhang and case clearance. [Winbond package drawing](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7159/W25Q128JV.pdf), [Murata capacitor drawing](https://docs.rs-online.com/b196/0900766b8138861e.pdf)
