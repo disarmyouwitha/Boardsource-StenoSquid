@@ -9,7 +9,7 @@ from build_placement import nodes, kind
 
 root = Path(__file__).resolve().parents[1]
 parser = ArgumentParser(description=__doc__)
-parser.add_argument('draft', nargs='?', default='draft-2', choices=['draft-2', 'draft-3'])
+parser.add_argument('draft', nargs='?', default='draft-2', choices=['draft-2', 'draft-3', 'draft-4'])
 output = root / parser.parse_args().draft
 interface = json.loads((output / 'interface.json').read_text())
 drc = json.loads((output / 'checks/drc.json').read_text())

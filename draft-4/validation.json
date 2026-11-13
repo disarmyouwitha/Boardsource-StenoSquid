@@ -1,0 +1,57 @@
+{
+  "revision": "D provisional",
+  "review_date": "2026-11-12",
+  "ERC_violations": 0,
+  "DRC_violations": 0,
+  "unconnected_items": 0,
+  "schematic_parity_issues": 0,
+  "all_eight_contacts_verified_against_schematic_and_PCB": true,
+  "exposed_pad_grounded": true,
+  "power_and_contact_labels_on_both_faces": true,
+  "configured_ignored_DRC_categories": [],
+  "copper_track_lengths_mm": {
+    "/CS_N": 11.413,
+    "/IO1": 10.959,
+    "/IO2": 19.451,
+    "/GND": 4.25,
+    "/IO0": 9.516,
+    "/CLK": 10.718,
+    "/IO3": 12.162,
+    "/VCC_SW": 29.675
+  },
+  "minimum_track_widths_mm": {
+    "/CS_N": 0.2,
+    "/IO1": 0.2,
+    "/IO2": 0.2,
+    "/GND": 0.2,
+    "/IO0": 0.2,
+    "/CLK": 0.2,
+    "/IO3": 0.2,
+    "/VCC_SW": 0.4
+  },
+  "track_segment_counts": {
+    "/CS_N": 5,
+    "/IO1": 6,
+    "/IO2": 6,
+    "/GND": 1,
+    "/IO0": 2,
+    "/CLK": 3,
+    "/IO3": 7,
+    "/VCC_SW": 18
+  },
+  "via_counts": {
+    "/CS_N": 2,
+    "/IO1": 1,
+    "/IO2": 2,
+    "/GND": 3,
+    "/CLK": 1,
+    "/IO3": 2
+  },
+  "host_pitch_verified": false,
+  "host_fit_verified": false,
+  "host_power_qualified": false,
+  "hashes": {
+    "steno-squid.kicad_pcb": "947923ed819e36ee0d8d4f396e6a8bd836e14c4e393863cf4c4d7c52350075c7",
+    "steno-squid.kicad_sch": "bb5d038374d2ed3ba3f5a34f7abab6d489f086ebaaf2b7af066ad9675e89e3c8"
+  }
+}

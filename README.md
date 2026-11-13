@@ -2,9 +2,13 @@
 
 A QSPI flash daughterboard for the **left expansion header of the Boardsource Wireless Corne SMT**, intended for onboard Javelin stenography. This is an independent community accessory project.
 
-![Draft B WSON prototype](draft-2/previews/isometric.png)
+## Current draft D
 
-## Current draft B
+Draft D sits flush on top of the left Choc switch plate. The WSON flash and Inkling silkscreen face up, with the contact row along the bottom and pin 1 at the left. The full outline wraps around the USB-C notch. The plate dimensions and contact offset are provisional.
+
+[Front preview](draft-4/previews/front.png) · [Back preview](draft-4/previews/back.png) · [1:1 plate-fit template](draft-4/previews/plate-fit-1to1.svg) · [KiCad and mounting notes](draft-4/README.md)
+
+## Draft B electrical baseline
 
 [KiCad project](draft-2/steno-squid.kicad_pro) · [Front](draft-2/previews/front.png) · [Back](draft-2/previews/back.png) · [Schematic](draft-2/previews/steno-squid.svg) · [STEP](draft-2/steno-squid.step) · [BOM](draft-2/BOM.csv)
 
@@ -17,7 +21,7 @@ A QSPI flash daughterboard for the **left expansion header of the Boardsource Wi
 - VCC, GND and contacts 1–8 are labeled on both faces, with a back-side pin-1 marker.
 - Native KiCad ERC, DRC, schematic parity and unconnected checks all pass. Every DRC category is enabled. [Validation](draft-2/validation.json)
 
-The current component face and artwork face are placement candidates. Verify the host's pin-1 end, mating face, body overhang, battery/antenna clearance and header height on the delivered board. The generic header model represents the candidate assembly. Final mounting geometry follows those measurements.
+Draft B uses a generic header model and remains the electrical baseline for the plate-mounted layout.
 
 ## Draft C back-mounted comparison
 
@@ -30,7 +34,7 @@ Draft C puts the flash and passives on the host-facing back and the Inkling on t
 
 ## Locked interface
 
-The owner locked this map on 2026-11-11. Draft B shows contact 1 at the left in component-side view, header along the top. Confirm the matching host face before fitting it.
+The owner locked this map on 2026-11-11. Draft D uses it with the header along the bottom of the component-side view. Confirm the pin-1 end and alignment on the host before fitting it.
 
 | Contact | Host GPIO or rail | Flash signal | Flash pad |
 |---|---|---|---|
@@ -77,6 +81,6 @@ The nice!view drawing confirms its 2.54 mm header pitch, and Boardsource documen
 
 The Draft B review’s grounding, power routing and firmware documentation items are complete. The host mating face and P0.31 rail measurements remain open before ordering.
 
-Draft A under draft-1 preserves the SOIC version and its original mapping. Draft 0 is the initial electrical proposal. Draft B is the active WSON design. Draft B’s back silkscreen features a hand-drawn Inkling squid with ink droplets. The final artwork face depends on the host mounting orientation. [Back preview](draft-2/previews/back.png) · [Silkscreen vector](artwork/inkling-silkscreen.svg) Independently controlled RGB needs another control path and remains future work.
+Draft A under draft-1 preserves the SOIC version and its original mapping. Draft 0 is the initial electrical proposal. Draft B is the WSON electrical baseline and introduced the hand-drawn Inkling. Draft D enlarges the artwork on the plate-facing assembly's visible side. Independently controlled RGB needs another control path and remains future work. [Draft B back preview](draft-2/previews/back.png) · [Silkscreen vector](artwork/inkling-silkscreen.svg)
 
 Fabrication release follows host fit, power and assembly review. Source credits and the KiCad library exception are in [ATTRIBUTION.md](ATTRIBUTION.md) and [LICENSES](LICENSES). A redistribution license for the original design has yet to be selected.

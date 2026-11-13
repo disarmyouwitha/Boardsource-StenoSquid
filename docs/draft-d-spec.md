@@ -1,6 +1,6 @@
 # Draft D design brief
 
-Proposed 2026-11-12 by Claude, from the owner's decisions. Not built: Claude has no KiCad here, so nothing was generated, routed or checked. Codex builds it in KiCad and runs ERC and DRC. The scale drawing is [draft-d-plate-fit.svg](draft-d-plate-fit.svg). All plate sizes are estimates read from an image (about 4.79 pixels per mm, from the 19.05 mm key pitch), good to a millimetre or two.
+Proposed 2026-11-12 by Claude, from the owner's decisions. The routed [Draft D KiCad layout](../draft-4/README.md) uses Option A and has its own [actual-size template](../draft-4/previews/plate-fit-1to1.svg). The original scale drawing is [draft-d-plate-fit.svg](draft-d-plate-fit.svg). All plate sizes are estimates read from an image (about 4.79 pixels per mm, from the 19.05 mm key pitch), good to a millimetre or two.
 
 ## Decisions from the owner
 
@@ -73,7 +73,7 @@ Rules until the antenna is identified:
 
 1. Keep the artwork area free of copper on both layers where possible. Draw the Inkling in silkscreen. Exposed gold or copper artwork (`artwork/gold-eyes.svg`) waits for a passing Bluetooth test.
 2. Keep the ground pour compact, around the flash, the passives and the contact row. Do not fill the whole board with ground.
-3. Keep the bottom-right corner (x > 14 mm, y < 3 mm) free of copper apart from the pin pads.
+3. Keep the bottom-right corner (x > 14 mm, y < 3 mm) free of copper apart from the pin pads and their short approach traces.
 4. Once the antenna part is known, replace these with its datasheet keepout.
 5. Bluetooth range is a pass/fail test on the real board, with the squid fitted and removed, in the same place.
 
@@ -100,6 +100,6 @@ Below the squid's underside the pins must pass the plate, the PCB-to-plate gap a
 5. Where the antenna is. The photo suggests a ceramic strip on the inner edge below the row (see Antenna), but nothing confirms it. Check the delivered board and ask Boardsource.
 6. The switched rail on pin 5: voltage on USB and battery, polarity of P0.31, how fast it falls when switched off.
 
-## For Codex
+## Implementation and physical fit
 
-Build Draft D in a new `draft-4` folder from the Draft B netlist, with the layout above. Run the checks with nothing ignored, and update `interface.json`, `validation.json`, the BOM (C2 and R2 not fitted) and the README. Test-print the outline and the contact row at 1:1 and hold it against the plate before ordering.
+Draft D uses the Draft B netlist and keeps C2 and R2 DNP. The CAD checks and their settings are recorded in [validation.json](../draft-4/validation.json). Test-print the outline and the contact row at 1:1 and hold it against the plate before ordering.
