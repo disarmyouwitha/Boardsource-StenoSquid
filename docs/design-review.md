@@ -26,7 +26,7 @@ Finish active writes before power removal. Put signal GPIOs into a safe state to
 
 ## Firmware interface
 
-The stock left matrix uses different GPIOs from the expansion signals. Keep that matrix unchanged. The upstream board currently enables SPI2 for nice!view on P0.23 SCK, P0.12 MOSI and P0.19 CS. The left QSPI build must release that display interface and give these pins to QSPI. The right display uses its own half's pins and can keep its display configuration. The tested Boardsource firmware uses the same QSPI assignments in its active and sleep states. The Studio-enabled left, logging left, right and both probes pass CI. [Boardsource firmware CI](https://github.com/disarmyouwitha/zmk-javelin-steno/actions/runs/43167852080) [Upstream board definition](https://github.com/boardsource/wireless-corne_zmk_config/tree/master/boards/boardsource/blecorne)
+The stock left matrix uses different GPIOs from the expansion signals. Keep that matrix unchanged. The upstream board currently enables SPI2 for nice!view on P0.23 SCK, P0.12 MOSI and P0.19 CS. The left QSPI build must release that display interface and give these pins to QSPI. The right display uses its own half's pins and can keep its display configuration. The tested Boardsource firmware uses the same QSPI assignments in its active and sleep states. The Studio-enabled left, logging left, right and both probes build in CI on the firmware branch. [Boardsource firmware CI](https://github.com/disarmyouwitha/zmk-javelin-steno/actions/workflows/build.yml?query=branch%3Asteno-squid%2Flocked-pin-map) [Upstream board definition](https://github.com/boardsource/wireless-corne_zmk_config/tree/master/boards/boardsource/blecorne)
 
 ## Fabrication and prototype strategy
 
