@@ -93,8 +93,8 @@
   },
   "antenna": {
     "location_verified": false,
-    "provisional_corner": "x > 14 mm, y < 3 mm",
-    "corner_copper": "pads and straight approach traces for contacts 6\u20138",
+    "candidate_cutback_region": "x > 14 mm, y < 3 mm",
+    "contact_row_ground": "retained on both layers for QSPI return paths",
     "artwork_copper_keepout_from_y_mm": 15
   },
   "optional_bulk": {

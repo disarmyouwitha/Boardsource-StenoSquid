@@ -73,7 +73,7 @@ Rules until the antenna is identified:
 
 1. Keep the artwork area free of copper on both layers where possible. Draw the Inkling in silkscreen. Exposed gold or copper artwork (`artwork/gold-eyes.svg`) waits for a passing Bluetooth test.
 2. Keep the ground pour compact, around the flash, the passives and the contact row. Do not fill the whole board with ground.
-3. Keep the bottom-right corner (x > 14 mm, y < 3 mm) free of copper apart from the pin pads and their short approach traces.
+3. Keep ground copper near the contact row for the flash return paths. The bottom-right corner (x > 14 mm, y < 3 mm) is a candidate for a localized cutback if Bluetooth testing or the antenna specification calls for it.
 4. Once the antenna part is known, replace these with its datasheet keepout.
 5. Bluetooth range is a pass/fail test on the real board, with the squid fitted and removed, in the same place.
 
