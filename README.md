@@ -1,4 +1,5 @@
-# Boardsource Steno Squid
+# StenoSquid-PCB
+https://github.com/disarmyouwitha/StenoSquid
 
 Steno Squid adds 16 MB of QSPI flash for Javelin stenography to the left half of the Boardsource Wireless Corne SMT. It is an independent community accessory designed to sit flush on top of the Choc switch plate.
 
