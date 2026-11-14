@@ -9,6 +9,6 @@ Steno Squid is an independent community accessory for the Boardsource Wireless C
 
 ## Artwork and project license
 
-The squid silkscreen is a fan illustration drawn for Steno Squid, based on the Inkling from Nintendo’s *Splatoon*. [Editable artwork](artwork/inkling-silkscreen.svg) · [Nintendo character reference](https://splatoon.nintendo.com/en/world/)
+Pop is the Steno Squid mascot on the current PCB. The earlier Inkling fan illustration drew on Nintendo’s *Splatoon*. [Editable Pop artwork](artwork/pop-centered-gaze-silkscreen.svg) · [Earlier artwork](artwork/inkling-silkscreen.svg)
 
 The original Steno Squid hardware design has no published redistribution license.

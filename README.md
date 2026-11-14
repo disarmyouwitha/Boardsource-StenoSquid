@@ -6,7 +6,7 @@ Steno Squid adds 16 MB of QSPI flash for Javelin stenography to the left half of
 
 ## Hardware
 
-- The 22.9 × 46.32 mm board is 1.0 mm thick. The stepped outline clears the estimated USB-C notch, and the components and Inkling silkscreen face up.
+- The 22.9 × 46.32 mm board is 1.0 mm thick. The stepped outline clears the estimated USB-C notch, and the components and Pop silkscreen face up.
 - Eight bare soldered pins pass through the plate slot into the host PCB. Viewed from above with USB-C at the top, the contact row is at the bottom and pin 1 is on the left. The 2.54 mm pitch and 2.20 mm pin-1 offset from the slot’s left end are provisional.
 - The W25Q128JVPIQ WSON flash, 100 nF decoupling capacitor C1 and 10 kΩ CS pull-up R1 are fitted. The optional bulk capacitor C2 and bleed resistor R2 start unpopulated. The breadboard rail test determines whether either is needed.
 - The 0.40 mm supply path from the header through C1 to the flash stays on the top copper layer. Ground pours on both layers cover the flash circuit and contact row. The artwork area is copper-free on both layers.

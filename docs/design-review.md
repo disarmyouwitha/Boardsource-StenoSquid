@@ -40,7 +40,7 @@ R2 is a 100 kΩ footprint between VCC_SW and GND, DNP initially. At 3.3 V it dra
 
 ## WSON land and height review
 
-Visible labels use at least 1.0 mm height and 0.15 mm strokes. Footprint silkscreen lines are 0.15 mm wide, with a 0.15 mm minimum silkscreen clearance. The body of the Inkling has a 0.075 mm outward adjustment to strengthen a thin connecting feature.
+Visible labels use at least 1.0 mm height and 0.15 mm strokes. Footprint silkscreen lines are 0.15 mm wide, with a 0.15 mm minimum silkscreen clearance. The Pop artwork is rendered as filled front silkscreen polygons. [Editable SVG](../artwork/pop-centered-gaze-silkscreen.svg)
 
 The custom land pattern uses 1.15 × 0.60 mm terminal lands at 1.27 mm pitch and a grounded 3.4 × 4.3 mm exposed pad. Four 1.3 × 1.7 mm paste windows provide about 60% coverage. Have the assembler confirm the terminal lands, stencil and paste volume. The package-P body is at most 0.8 mm high, while the selected C1 can reach 0.9 mm before solder-joint allowance. Check the resulting height above the switch plate against keycap overhang and case clearance. [Winbond package drawing](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7159/W25Q128JV.pdf), [Murata capacitor drawing](https://docs.rs-online.com/b196/0900766b8138861e.pdf)
 

@@ -8,7 +8,7 @@ Updated 2026-11-13 after implementing the KiCad review.
 |---|---|
 | C1 ground return | Added a 0.6/0.3 mm stitching via at KiCad (36.4, 58.9). Both ground pours remain connected, with four ground vias total. |
 | Silkscreen | Visible labels are at least 1.0 mm high with 0.15 mm strokes. Footprint lines use 0.15 mm. The project enforces 0.15 mm silkscreen clearance. |
-| Inkling | Thickened the main silhouette outward by 0.075 mm at a thin connecting feature. All seven ink regions survive a 0.15 mm diameter erosion check. |
+| Pop silkscreen | Imported the centered-gaze SVG. All eleven ink regions remain connected within each region after a 0.15 mm diameter erosion check. |
 | Supply width | Added a Power netclass and a custom DRC rule enforcing 0.40 mm on VCC_SW. A temporary 0.20 mm supply segment was rejected by the rule. |
 | Revision | The schematic, board title block, interface and validation identify D provisional. |
 | Portable netlist | Validation removes the absolute machine path from the exported schematic source field. |

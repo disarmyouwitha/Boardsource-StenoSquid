@@ -1,6 +1,6 @@
 {
   "revision": "D provisional",
-  "review_date": "2026-11-13",
+  "review_date": "2026-11-14",
   "ERC_violations": 0,
   "DRC_violations": 0,
   "unconnected_items": 0,
@@ -53,7 +53,7 @@
   "host_fit_verified": false,
   "host_power_qualified": false,
   "hashes": {
-    "steno-squid.kicad_pcb": "1a5430acefe2d6604c1026203b9876f662c11c8be79ce045eda8d464aeadc87e",
+    "steno-squid.kicad_pcb": "ae672434e2f90ba7da9939c09812a080d108b34032b2e349eba9439ddb11c847",
     "steno-squid.kicad_sch": "86ba2f7e59bd18a25637a9a04f3dcd100ed3603155624f3ca1243db888ee370b",
     "steno-squid.kicad_pro": "d22541ef2a281bba3f32b3e5871885ef5f3ab497c49ef2972f96558bc6245c31",
     "steno-squid.kicad_dru": "eb415e35e78c1826e2ea2c81ed40d9b24f728510251829f95a14e4257e80b9f0",
