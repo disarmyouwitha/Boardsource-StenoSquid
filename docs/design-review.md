@@ -6,7 +6,7 @@ The daughterboard sits on top of the left Choc switch plate, with eight bare pin
 
 ## Circuit and routing
 
-C1 is 100 nF at the flash supply. R1 pulls CS# up to switched VCC through 10 kΩ. C2 and R2 remain unpopulated until rail measurements support a change. The 0.40 mm front-layer supply runs from J1 contact 5 through C1 to U1 pad 8 without vias. Three stitching vias connect the local ground pours. Flash pad 9 is grounded with a track and via keepout under the exposed pad. [Routing measurements](../pcb/validation.json)
+C1 is 100 nF at the flash supply. R1 pulls CS# up to switched VCC through 10 kΩ. C2 and R2 remain unpopulated until rail measurements support a change. A custom DRC rule enforces the 0.40 mm supply minimum. The 0.40 mm front-layer supply runs from J1 contact 5 through C1 to U1 pad 8 without vias. Four stitching vias connect the local ground pours. The added via at KiCad (36.4, 58.9) joins the flash-side ground region to the bottom return plane across the supply trunk from C1. Flash pad 9 is grounded with a track and via keepout under the exposed pad. [Routing measurements](../pcb/validation.json)
 
 ## Antenna clearance and Bluetooth test
 
@@ -30,9 +30,9 @@ The stock left matrix uses different GPIOs from the expansion signals. Keep that
 
 ## Fabrication and prototype strategy
 
-Use black solder mask, white silkscreen and ENIG for the proposed finish. Confirm 1.0 mm thickness with the assembler and selected connector. Assemble flash, C1 and R1 on the front. Leave C2 and R2 empty initially. Inspect orientation and shorts, verify supply behavior, then read JEDEC ID and SFDP before programming the dictionary. Confirm host contact alignment, plate fit and RF clearance before the first fabrication release.
+Use black solder mask, white silkscreen and ENIG for the proposed finish. Confirm 1.0 mm thickness with the assembler and selected connector. C1 and R1 have assembly catalog numbers in the BOM. Confirm stock when quoting. Assemble flash, C1 and R1 on the front. Leave C2 and R2 empty initially. Inspect orientation and shorts, verify supply behavior, then read JEDEC ID and SFDP before programming the dictionary. Confirm host contact alignment, plate fit and RF clearance before the first fabrication release.
 
-The public repository contains native CAD, reports, BOM candidates, STEP and previews. Manufacturing Gerbers are deferred until the fit and host supply checks. All DRC categories are enabled and the current report contains no ignored categories. Passing ERC/DRC establishes the reported CAD checks, while compatibility, signal integrity and firmware behavior still require the prototype.
+The public repository contains native CAD, reports, BOM candidates, STEP and previews. Manufacturing Gerbers are deferred until the fit and host supply checks. All ERC and DRC categories are enabled and the current report contains no ignored categories. Passing ERC/DRC establishes the reported CAD checks, while compatibility, signal integrity and firmware behavior still require the prototype.
 
 ## Optional discharge resistor
 
@@ -40,4 +40,10 @@ R2 is a 100 kΩ footprint between VCC_SW and GND, DNP initially. At 3.3 V it dra
 
 ## WSON land and height review
 
+Visible labels use at least 1.0 mm height and 0.15 mm strokes. Footprint silkscreen lines are 0.15 mm wide, with a 0.15 mm minimum silkscreen clearance. The body of the Inkling has a 0.075 mm outward adjustment to strengthen a thin connecting feature.
+
 The custom land pattern uses 1.15 × 0.60 mm terminal lands at 1.27 mm pitch and a grounded 3.4 × 4.3 mm exposed pad. Four 1.3 × 1.7 mm paste windows provide about 60% coverage. Have the assembler confirm the terminal lands, stencil and paste volume. The package-P body is at most 0.8 mm high, while the selected C1 can reach 0.9 mm before solder-joint allowance. Check the resulting height above the switch plate against keycap overhang and case clearance. [Winbond package drawing](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7159/W25Q128JV.pdf), [Murata capacitor drawing](https://docs.rs-online.com/b196/0900766b8138861e.pdf)
+
+## Assembly handling and panelization
+
+The stepped outline and 22.9 mm width need an assembler-approved carrier or panel arrangement. For JLCPCB standard assembly, allow at least 5 mm handling rails with fiducials and tooling holes as specified for the selected service. Have the assembler choose tab locations and routed spacing so separation preserves the fitted outline, USB notch and header pads. Panelization is pending the fit measurement and assembly quote. [JLCPCB rail guidance](https://jlcpcb.com/help/article/how-to-add-edge-rails-fiducials-for-pcb-assembly-order) · [Irregular board size guidance](https://jlcpcb.com/help/article/pcb-dimensions)

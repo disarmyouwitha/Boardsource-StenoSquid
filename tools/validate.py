@@ -15,8 +15,14 @@ assert not erc_issues
 assert not drc['violations']
 assert not drc['unconnected_items']
 assert not drc['schematic_parity']
+assert not erc['ignored_checks'], 'Every ERC category must be enabled'
 
-netlist = ET.parse(output / 'checks/netlist.xml').getroot()
+netlist_path = output / 'checks/netlist.xml'
+netlist_text = netlist_path.read_text()
+netlist_text = re.sub(r'(<source>)[^<]*[/\\]([^/<\\]+)(</source>)',
+                      r'\1\2\3', netlist_text)
+netlist_path.write_text(netlist_text)
+netlist = ET.fromstring(netlist_text)
 members = {net.get('name').lstrip('/'): {(node.get('ref'), node.get('pin')) for node in net.findall('node')}
            for net in netlist.findall('./nets/net')}
 board = (output / 'steno-squid.kicad_pcb').read_text()
@@ -72,10 +78,16 @@ for _, _, node in nodes(board):
 
 assert minimum_widths['/VCC_SW'] >= 0.4
 assert via_counts.get('/GND', 0) >= 3
+project = json.loads((output / 'steno-squid.kicad_pro').read_text())
+assert any(item['netclass'] == 'Power' and item['pattern'] == '/VCC_SW'
+           for item in project['net_settings']['netclass_patterns'])
+assert '(constraint track_width (min 0.4mm))' in (output / 'steno-squid.kicad_dru').read_text()
+assert '(rev "' + interface['revision'] + '")' in board
+assert '(rev "' + interface['revision'] + '")' in (output / 'steno-squid.kicad_sch').read_text()
 
 report = {
     'revision': interface['revision'],
-    'review_date': '2026-11-12',
+    'review_date': drc['date'].split('T')[0],
     'ERC_violations': len(erc_issues),
     'DRC_violations': len(drc['violations']),
     'unconnected_items': len(drc['unconnected_items']),
@@ -84,6 +96,8 @@ report = {
     'exposed_pad_grounded': True,
     'power_and_contact_labels_on_both_faces': True,
     'configured_ignored_DRC_categories': drc['ignored_checks'],
+    'configured_ignored_ERC_categories': erc['ignored_checks'],
+    'supply_minimum_width_rule_mm': 0.4,
     'copper_track_lengths_mm': {net: round(value, 3) for net, value in lengths.items()},
     'minimum_track_widths_mm': minimum_widths,
     'track_segment_counts': segment_counts,
@@ -91,8 +105,10 @@ report = {
     'host_pitch_verified': False,
     'host_fit_verified': False,
     'host_power_qualified': False,
-    'hashes': {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
-               for p in [output / 'steno-squid.kicad_pcb', output / 'steno-squid.kicad_sch']}
+    'hashes': {str(p.relative_to(output)): hashlib.sha256(p.read_bytes()).hexdigest()
+               for p in [output / 'steno-squid.kicad_pcb', output / 'steno-squid.kicad_sch',
+                         output / 'steno-squid.kicad_pro', output / 'steno-squid.kicad_dru',
+                         output / 'models/WSON-8_6x5mm_EP3.4x4.3mm.step']}
 }
 (output / 'validation.json').write_text(json.dumps(report, indent=2) + '\n')
 print('ERC, DRC, unconnected and parity all zero. All eight contacts match the schematic and PCB.')

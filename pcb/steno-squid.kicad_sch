@@ -1,4 +1,4 @@
-(kicad_sch (version 20250114) (generator "eeschema") (uuid "6b325e93-ae36-42d4-abe7-5cde5e8c3208") (paper "A4") (title_block (title "Steno Squid - 8-contact QSPI electrical proposal") (rev "B provisional")) (lib_symbols (symbol "StenoSquid:Capacitor" (pin_numbers hide) (pin_names (offset 0.7) hide) (in_bom yes) (on_board yes)
+(kicad_sch (version 20250114) (generator "eeschema") (uuid "6b325e93-ae36-42d4-abe7-5cde5e8c3208") (paper "A4") (title_block (title "Steno Squid - 8-contact QSPI electrical proposal") (rev "D provisional")) (lib_symbols (symbol "StenoSquid:Capacitor" (pin_numbers hide) (pin_names (offset 0.7) hide) (in_bom yes) (on_board yes)
       (property "Reference" "C" (at 0 0 0)
         (effects (font (size 1 1)))
       )

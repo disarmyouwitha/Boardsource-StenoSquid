@@ -1,6 +1,6 @@
 {
   "revision": "D provisional",
-  "review_date": "2026-11-12",
+  "review_date": "2026-11-13",
   "ERC_violations": 0,
   "DRC_violations": 0,
   "unconnected_items": 0,
@@ -9,15 +9,17 @@
   "exposed_pad_grounded": true,
   "power_and_contact_labels_on_both_faces": true,
   "configured_ignored_DRC_categories": [],
+  "configured_ignored_ERC_categories": [],
+  "supply_minimum_width_rule_mm": 0.4,
   "copper_track_lengths_mm": {
     "/CS_N": 11.413,
-    "/IO1": 10.959,
+    "/IO1": 10.931,
     "/IO2": 19.451,
     "/GND": 4.25,
-    "/IO0": 9.516,
+    "/IO0": 9.498,
     "/CLK": 10.718,
-    "/IO3": 12.162,
-    "/VCC_SW": 29.675
+    "/IO3": 12.104,
+    "/VCC_SW": 29.491
   },
   "minimum_track_widths_mm": {
     "/CS_N": 0.2,
@@ -31,19 +33,19 @@
   },
   "track_segment_counts": {
     "/CS_N": 5,
-    "/IO1": 6,
+    "/IO1": 4,
     "/IO2": 6,
     "/GND": 1,
-    "/IO0": 2,
+    "/IO0": 1,
     "/CLK": 3,
-    "/IO3": 7,
-    "/VCC_SW": 18
+    "/IO3": 5,
+    "/VCC_SW": 9
   },
   "via_counts": {
     "/CS_N": 2,
     "/IO1": 1,
     "/IO2": 2,
-    "/GND": 3,
+    "/GND": 4,
     "/CLK": 1,
     "/IO3": 2
   },
@@ -51,7 +53,10 @@
   "host_fit_verified": false,
   "host_power_qualified": false,
   "hashes": {
-    "steno-squid.kicad_pcb": "f40f876d341ae297aae86c5ec340abe80ae054d61f4fad3bc4319de308518984",
-    "steno-squid.kicad_sch": "bb5d038374d2ed3ba3f5a34f7abab6d489f086ebaaf2b7af066ad9675e89e3c8"
+    "steno-squid.kicad_pcb": "1a5430acefe2d6604c1026203b9876f662c11c8be79ce045eda8d464aeadc87e",
+    "steno-squid.kicad_sch": "86ba2f7e59bd18a25637a9a04f3dcd100ed3603155624f3ca1243db888ee370b",
+    "steno-squid.kicad_pro": "d22541ef2a281bba3f32b3e5871885ef5f3ab497c49ef2972f96558bc6245c31",
+    "steno-squid.kicad_dru": "eb415e35e78c1826e2ea2c81ed40d9b24f728510251829f95a14e4257e80b9f0",
+    "models/WSON-8_6x5mm_EP3.4x4.3mm.step": "866abd97df7c1c3fd876c65898f89a8bad08b450c483ff7aa630ce27bf53b452"
   }
 }

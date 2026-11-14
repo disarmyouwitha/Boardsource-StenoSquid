@@ -1,0 +1,4 @@
+(version 1)
+(rule "Switched supply minimum width"
+  (condition "A.NetName == '/VCC_SW'")
+  (constraint track_width (min 0.4mm)))

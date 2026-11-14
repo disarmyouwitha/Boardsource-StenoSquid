@@ -28,7 +28,7 @@ Use this map for the Adafruit flash breakout proof of concept. The left expansio
 
 ## Prototype status
 
-KiCad reports zero ERC, DRC, unconnected items and schematic-parity issues with every DRC category enabled. Physical fit, power and Bluetooth performance still need verification. [CAD validation](pcb/validation.json)
+KiCad reports zero ERC, DRC, unconnected items and schematic-parity issues with every ERC and DRC category enabled. Physical fit, power and Bluetooth performance still need verification. [CAD validation](pcb/validation.json)
 
 1. Print the fit template at 100% and check its 50 mm scale bar. Confirm the contact row and pin-1 position, USB plug and keycap clearance, plate material and mounting stack before choosing pin length.
 2. Check the switched rail on USB and battery. Measure voltage under load, control polarity, shared loads and discharge with the breakout before deciding whether to populate R2 or C2.

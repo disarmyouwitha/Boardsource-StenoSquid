@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>/Users/nap/Documents/new_code/Boardsource-StenoSquid/draft-4/steno-squid.kicad_sch</source>
-    <date>2026-11-12T19:46:59</date>
+    <source>steno-squid.kicad_sch</source>
+    <date>2026-11-13T20:09:23</date>
     <tool>Eeschema 10.0.7</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title>Steno Squid - 8-contact QSPI electrical proposal</title>
         <company/>
-        <rev>B provisional</rev>
+        <rev>D provisional</rev>
         <date/>
         <source>steno-squid.kicad_sch</source>
         <comment number="1" value=""/>
@@ -278,7 +278,7 @@
       <node ref="J1" pin="3" pinfunction="IO3_3" pintype="passive"/>
       <node ref="U1" pin="7" pinfunction="IO3_7" pintype="bidirectional"/>
     </net>
-    <net code="8" name="/VCC_SW" class="Default">
+    <net code="8" name="/VCC_SW" class="Power,Default">
       <node ref="C1" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="C2" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="J1" pin="5" pinfunction="VCC_SW_5" pintype="power_out"/>
