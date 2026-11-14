@@ -1,6 +1,6 @@
 # Plate-mounted Steno Squid
 
-[KiCad project](steno-squid.kicad_pro) · [Front](previews/front.png) · [Back](previews/back.png) · [1:1 fit template](previews/plate-fit-1to1.svg) · [STEP](steno-squid.step) · [BOM](BOM.csv) · [Validation](validation.json)
+[KiCad project](steno-squid.kicad_pro) · [Front](previews/front-pop.png) · [Back](previews/back.png) · [1:1 fit template](previews/plate-fit-1to1.svg) · [STEP](steno-squid.step) · [BOM](BOM.csv) · [Validation](validation.json)
 
 The 22.9 × 46.32 mm, 1.0 mm PCB uses the full-ear outline with a stepped USB-C notch and 1 mm corner radii. It sits on the Choc switch plate with the flash, passives and Pop silkscreen on top. Viewed from above with the USB-C at the top, the contact row is at the bottom and pin 1 is at the left. The underside is solder-masked except at the contact holes. The mounting concept uses eight bare soldered pins through the plate slot. The model represents the board and its populated SMT parts. The local WSON model has a 3.4 × 4.3 mm exposed pad matching the land pattern.
 

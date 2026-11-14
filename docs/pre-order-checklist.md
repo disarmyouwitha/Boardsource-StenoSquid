@@ -18,7 +18,7 @@ Updated 2026-11-13 after implementing the KiCad review.
 | Routing cleanup | Snapped short endpoint fragments to pad centers and removed duplicate supply segments. |
 | Ground pour review | Inspected both reported narrow regions on both layers. They taper at clearance boundaries and have broad bottom-layer return copper nearby. Both pours remain connected and no starved thermal is reported. |
 
-CAD reports, validation hashes, STEP, previews and the actual-size fit template are regenerated for the current layout. [Validation](../pcb/validation.json) · [Board preview](../pcb/previews/front.png)
+CAD reports, validation hashes, STEP, previews and the actual-size fit template are regenerated for the current layout. [Validation](../pcb/validation.json) · [Board preview](../pcb/previews/front-pop.png)
 
 ## Physical checks and assembly quote
 

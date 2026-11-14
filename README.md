@@ -2,7 +2,9 @@
 
 Steno Squid adds 16 MB of QSPI flash for Javelin stenography to the left half of the Boardsource Wireless Corne SMT. It is an independent community accessory designed to sit flush on top of the Choc switch plate.
 
-[Board preview](pcb/previews/front.png) · [KiCad project](pcb/steno-squid.kicad_pro) · [Actual-size fit template](pcb/previews/plate-fit-1to1.svg) · [STEP model](pcb/steno-squid.step) · [BOM](pcb/BOM.csv)
+<img src="pcb/previews/front-pop.png" alt="Steno Squid PCB with Pop on the front silkscreen" width="420">
+
+[KiCad project](pcb/steno-squid.kicad_pro) · [Actual-size fit template](pcb/previews/plate-fit-1to1.svg) · [STEP model](pcb/steno-squid.step) · [BOM](pcb/BOM.csv)
 
 ## Hardware
 
